@@ -1,10 +1,5 @@
 # Leveraging Large Language Models in Software Engineering to Summarize Professor Ratings
 
-### Advanced Software Engineering CS5130-001 | Preliminary Project Proposal  
-**Team Members:**  
-- Antwan Fares (Computer Science Undergrad)  
-- Hamza Khairy (Computer Engineering Undergrad)  
-
 ## Introduction
 This project aims to simplify the professor selection process for students by using an automated system to collect, summarize, and analyze professor ratings from platforms like Rate My Professor. Leveraging natural language processing (NLP) and machine learning techniques, our tool will provide students with nuanced summaries and categorized feedback to make informed decisions on professor and course selection.
 
@@ -24,13 +19,8 @@ Current professor rating platforms require users to manually sift through numero
 - **Effectiveness Metrics:** Measure classification accuracy and relevance of summarized feedback.
 - **User Testing:** Conduct surveys to evaluate the usefulness and reliability of recommendations.
 - **Comparative Analysis:** Compare automated recommendations with manual reviews to assess improvements in time efficiency and insight quality.
-
-## Feasibility
-Using pre-trained NLP models and available machine-learning libraries, we will focus on integration and testing, ensuring the project is achievable within the given timeline.
-
 ---
 
 ## Repository Structure
 - **src**: Contains Python scripts for data collection, NLP summarization, comment classification, and recommendation generation.
 - **docs**: Documentation files, including the detailed project proposal.
-- **evaluation**: Contains files documenting the evaluation plan, user testing, and comparative analysis.
