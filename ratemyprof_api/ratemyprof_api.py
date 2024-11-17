@@ -72,7 +72,7 @@ class RateMyProfApi:
 
 
             for json_professor in json_response["professors"]:
-                print(json_professor)
+                # print(json_professor)
                 professor = Professor(
                     json_professor["tid"],
                     json_professor["tFname"],
@@ -259,7 +259,7 @@ if __name__ == '__main__':
             reviews_list = uc.create_reviews_list(professor.ratemyprof_id)
             print(f"Reviews for {professor.name}:")
             for review in reviews_list:
-                print(f"- {review['rComments']} (Rating: {review['quality']})")
+                print(f"- {review['rComments']} (Rating: {review['quality']}) (Class: {review['rClass']}) (Tags: {review['teacherRatingTags']}) (Date: {review['rDate']})(OnlineClass: {review['onlineClass']}) (helpCount: {review['helpCount']})")
         else:
             print(f"No professor found with the name '{ProfessorName}'.")
 
