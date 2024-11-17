@@ -103,8 +103,28 @@ class RateMyProfApi:
     def search_professor(self, ProfessorName):
         self.indexnumber = self.get_professor_index(ProfessorName)
         self.print_professor_info()
-        return self.indexnumber
+        return self.indexnumber  
+    
+    def get_professor_index(self, ProfessorName):
+        
+    # Search for a professor by name and return their ID (index).
 
+        ProfessorName = ProfessorName.lower()
+        for professor_id, professor in self.professors.items():
+            if ProfessorName in professor.name.lower():
+                return professor_id
+
+        # Raise an error if the professor is not found
+        raise ProfessorNotFound(ProfessorName, "Name")
+
+    def print_professor_info(self):
+        if self.indexnumber:
+            professor = self.professors[self.indexnumber]
+            print(f"Professor Name: {professor.name}")
+            print(f"Number of Ratings: {professor.num_of_ratings}")
+            print(f"Overall Rating: {professor.overall_rating}")
+        else:
+            print("No professor selected.")
 
 
     def get_professor_by_last_name(
@@ -121,8 +141,6 @@ class RateMyProfApi:
 
         # Raise error if no matching professor found
         raise ProfessorNotFound(last_name, "Last Name")
-
-
 
 
 
@@ -222,15 +240,33 @@ class RateMyProfApi:
                 writer.writerow(data)
 
 
-# Time for some examples!
 if __name__ == '__main__':
 
-    # Getting general professor info!
-    uci = RateMyProfApi(1074)
+    # Initialize API with the university ID
+    uc = RateMyProfApi(1086)
+
+    # Search for the professor by name
+    ProfessorName = "Anca Ralescu"
+    try:
+        # Find the professor's ID
+        professor_index = uc.search_professor(ProfessorName)
+
+        if professor_index:
+            professor = uc.professors[professor_index]
+            print(f"Found Professor: {professor.name} ({professor.num_of_ratings} ratings, Overall Rating: {professor.overall_rating})")
+
+            # Retrieve and display the reviews
+            reviews_list = uc.create_reviews_list(professor.ratemyprof_id)
+            print(f"Reviews for {professor.name}:")
+            for review in reviews_list:
+                print(f"- {review['rComments']} (Rating: {review['quality']})")
+        else:
+            print(f"No professor found with the name '{ProfessorName}'.")
+
+    except ProfessorNotFound as e:
+        print(e)
 
 
-    # uci.search_professor("Pattis")
-    # uci.print_professor_detail("overall_rating")
     '''
     MassInstTech = RateMyProfApi(580)
     MassInstTech.search_professor("Robert Berwick")
