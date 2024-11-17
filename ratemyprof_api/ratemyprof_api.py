@@ -4,7 +4,22 @@ import math
 import csv
 import os
 
-from .professor import Professor
+
+class Professor:
+    def __init__(self, ratemyprof_id: int, first_name: str, last_name: str, num_of_ratings: int, overall_rating):
+        self.ratemyprof_id = ratemyprof_id
+
+        self.name = f"{first_name} {last_name}"
+        self.first_name = first_name
+        self.last_name = last_name
+        self.num_of_ratings = num_of_ratings
+
+        if self.num_of_ratings < 1:
+            self.overall_rating = 0
+
+        else:
+            self.overall_rating = float(overall_rating)
+
 # This code has been tested using Python 3.6 interpreter and Linux (Ubuntu).
 # It should run under Windows, if anything you may need to make some adjustments for the file paths of the CSV files.
 
@@ -28,7 +43,7 @@ class ProfessorNotFound(Exception):
 
 
 class RateMyProfApi:
-    def __init__(self, school_id: str = "1074", testing: bool = False):
+    def __init__(self, school_id: str = "1086", testing: bool = False):
         self.UniversityId = school_id
         if not os.path.exists("SchoolID_" + str(self.UniversityId)):
             os.mkdir("SchoolID_" + str(self.UniversityId))
