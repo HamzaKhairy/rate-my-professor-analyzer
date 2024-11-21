@@ -3,6 +3,15 @@ import json
 import math
 import csv
 import os
+import google.generativeai as genai
+genai.configure(api_key="AIzaSyAhScXimIELR9bq7evzWGUlNZzmRhOsWXc") 
+model = genai.GenerativeModel("gemini-1.5-flash")
+all_reviews = ""
+Prompt = '''I am a student at the University of Cincinnati. I am looking for a professor who is knowledgeable,
+ engaging, and approachable. I want to take a class with a professor who is passionate about their subject and cares about 
+ their students. I came across this professor, give me the sentiment about this professor, your response should be three
+ sentences only, give me a concise review of the professor please, here are the rate my prfessor 
+ reviews:''' 
 
 
 class Professor:
@@ -259,9 +268,14 @@ if __name__ == '__main__':
             reviews_list = uc.create_reviews_list(professor.ratemyprof_id)
             print(f"Reviews for {professor.name}:")
             for review in reviews_list:
-                print(f"- {review['rComments']} (Rating: {review['quality']}) (Class: {review['rClass']}) (Tags: {review['teacherRatingTags']}) (Date: {review['rDate']})(OnlineClass: {review['onlineClass']}) (helpCount: {review['helpCount']})")
+                all_reviews += f"- {review['rComments']} (Rating: {review['quality']}) (Class: {review['rClass']}) (Tags: {review['teacherRatingTags']}) (Date: {review['rDate']})(OnlineClass: {review['onlineClass']}) (helpCount: {review['helpCount']})"
+
         else:
             print(f"No professor found with the name '{ProfessorName}'.")
+
+
+        response = model.generate_content(Prompt + all_reviews)
+        print(response.text)
 
     except ProfessorNotFound as e:
         print(e)
