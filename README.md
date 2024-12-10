@@ -1,16 +1,16 @@
 
-# Professor Sentiment & Review Analyzer
+# RMP.AI Professor Sentiment & Review Analyzer
 
 ## Overview
 
-The **Professor Sentiment & Review Analyzer** is a Python application designed to retrieve and analyze professor reviews from RateMyProfessor.com. By integrating Google Generative AI, the tool provides detailed summaries and sentiment analysis of professor reviews based on user-defined qualities (e.g., Clarity, Helpfulness, Engagement). This project aims to help students make informed decisions about professors by highlighting key strengths and weaknesses.
+The **Professor Sentiment & Review Analyzer** is a Python application designed to retrieve and analyze professor reviews from RateMyProfessors.com. By integrating Google Generative AI, the tool provides detailed summaries and sentiment analysis of professor reviews based on user-defined qualities (e.g., Clarity, Helpfulness, Engagement). This project aims to help students make informed decisions about professors by highlighting key strengths and weaknesses.
 
 ---
 
 ## Features
 
 1. **Review Retrieval**:
-   - Fetches reviews for a specific professor from RateMyProfessor.com.
+   - Fetches reviews for a specific professor.
    
 2. **Summarization**:
    - Generates concise summaries of reviews with bullet points based on user-selected qualities.
@@ -37,7 +37,7 @@ Install the required Python libraries using the following command:
 pip install ratemyprofessor google-generativeai
 ```
 
-### Google Generative AI
+### Google Generative AI (optional, existing key is suitable for demo)
 1. Obtain an API key for Google Generative AI.
 2. Replace the placeholder in the script with your API key:
    ```python
@@ -61,7 +61,7 @@ pip install ratemyprofessor google-generativeai
 
 3. **Run the Application**:
    ```bash
-   python main.py
+   python Master.py
    ```
 
 ---
@@ -89,7 +89,7 @@ pip install ratemyprofessor google-generativeai
 1. Launch the app.
 2. Input:
    - University Name: `University of Example`
-   - Professor Name: `Dr. John Doe`
+   - Professor Name: `John Doe`
    - Desired Qualities: `Clarity`, `Helpfulness`, `Engagement`
 3. Click **Analyze Sentiment**.
 4. View the results in the provided text box.
